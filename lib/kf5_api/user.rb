@@ -12,7 +12,7 @@ module Kf5Api
       # 获取某个组织下的所有用户
       def users_by_organization(org_id, query_params = {})
         action = format(ACTIONS_HASH[:users_by_org], id: org_id)
-        get(action, query_params).parsed_response['users']
+        get(action, query_params).parsed_response
       end
     end
   end

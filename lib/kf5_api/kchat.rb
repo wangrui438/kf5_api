@@ -12,12 +12,12 @@ module Kf5Api
     class << self
       # 对话列表
       def history(query_params = {})
-        get(ACTIONS_HASH[:history], query_params).parsed_response['chats']
+        get(ACTIONS_HASH[:history], query_params).parsed_response
       end
 
       # 查看对话
       def chat(chat_id)
-        get(format(ACTIONS_HASH[:chat], id: chat_id)).parsed_response['chat']
+        get(format(ACTIONS_HASH[:chat], id: chat_id)).parsed_response
       end
     end
   end

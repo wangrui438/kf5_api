@@ -10,7 +10,7 @@ module Kf5Api
 
     class << self
       def all(query_params = {})
-        get(ACTIONS_HASH[:all], query_params).parsed_response['organizations']
+        get(ACTIONS_HASH[:all], query_params).parsed_response
       end
     end
   end
