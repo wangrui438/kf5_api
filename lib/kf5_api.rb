@@ -4,6 +4,7 @@ require "kf5_api/base"
 require "kf5_api/organization"
 require "kf5_api/user"
 require "kf5_api/kchat"
+require "logger"
 
 module Kf5Api
   class << self
@@ -13,6 +14,10 @@ module Kf5Api
 
     def config
       @config ||= Configuration.new
+    end
+
+    def logger
+      @logger ||= Logger.new(STDOUT)
     end
   end
 end
