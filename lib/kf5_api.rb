@@ -4,6 +4,7 @@ require "kf5_api/base"
 require "kf5_api/organization"
 require "kf5_api/user"
 require "kf5_api/kchat"
+require "kf5_api/user_field"
 require "logger"
 
 module Kf5Api
