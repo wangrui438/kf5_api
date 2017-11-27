@@ -20,5 +20,9 @@ module Kf5Api
     def logger
       @logger ||= Logger.new(STDOUT)
     end
+
+    def server
+      "https://#{Kf5Api.config.sub_domain}.kf5.com"
+    end
   end
 end

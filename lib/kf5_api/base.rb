@@ -2,12 +2,23 @@ require 'httparty'
 
 module Kf5Api
   module Base
+
     def get(action, query_params = {})
-      server = "https://#{Kf5Api.config.sub_domain}.kf5.com"
-      url = server + action
+      url = Kf5Api.server + action
       query_params = query_params.inject({}){ |memo, (k,v)| memo[k.to_s] = v; memo }
 
       response = HTTParty.get(url, query: query_params, basic_auth: basic_auth, header: { 'Content-Type' => 'application/json' })
+
+      unless response.code == 200
+        Kf5Api.logger.error "[Kf5Api] url: #{url}, status: #{response.code}, body: #{response.parsed_response}"
+      end
+
+      response
+    end
+
+    def put(action, body)
+      url = Kf5Api.server + action
+      response = HTTParty.put(url, body: body.to_json, basic_auth: basic_auth, header: { 'Content-Type' => 'application/json' })
 
       unless response.code == 200
         Kf5Api.logger.error "[Kf5Api] url: #{url}, status: #{response.code}, body: #{response.parsed_response}"
