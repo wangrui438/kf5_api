@@ -5,12 +5,19 @@ module Kf5Api
     # http://developer.kf5.com/restfulapi/core/users
 
     ACTIONS_HASH = {
+      users: '/apiv2/users',
       users_by_org: '/apiv2/organizations/%{id}/users',
       edit: '/apiv2/users/%{id}',
       search: '/apiv2/users/search'
     }
 
     class << self
+      # 获取用户列表
+      def users(query_params = {})
+        action = ACTIONS_HASH[:users]
+        get(action, query_params).parsed_response
+      end
+
       # 获取某个组织下的所有用户
       def users_by_organization(org_id, query_params = {})
         action = format(ACTIONS_HASH[:users_by_org], id: org_id)
