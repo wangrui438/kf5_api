@@ -32,9 +32,11 @@ module Kf5Api
 
       # 查询用户信息
       # query为查询参数，模糊搜索(名称，邮箱，手机号，微信openid)
-      def search(keyword)
+      def search(keyword, query_fields = nil)
         action = format(ACTIONS_HASH[:search])
-        get(action, { query: keyword }).parsed_response
+        query_params = { query: keyword }
+        query_params[:query_fields] = query_fields if query_fields.present?
+        get(action, query_params).parsed_response
       end
     end
   end
